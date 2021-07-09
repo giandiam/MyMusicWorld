@@ -1,0 +1,30 @@
+body{
+    background-color: #787a78;
+}
+
+.container{
+    background-color: white;
+    width: 400px;
+    height: 500px;
+    border: 1px solid grey;
+    border-radius: 2%;
+    padding: 10px 50px;
+    margin: 50px auto;
+}
+
+img{
+    width: 150px;
+    height: 150px;
+    margin: 1px 0px 30px 70px;
+}
+
+button{
+    margin: 30px 0px 30px 110px;
+    color: white !important;
+    background-color: #88001b !important;
+    border: none;
+}
+
+button:hover{
+    background-color: #b35c6d !important;
+}
