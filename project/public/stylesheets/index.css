@@ -49,8 +49,6 @@ h6{
 .btn-facebook{
     color: white;
     background-color: #3b5998;
-    width: 110px;
-    height: 30px;
     display: inline;
 }
 
@@ -62,9 +60,7 @@ h6{
 .btn-google{
     color: white;
     background-color: #dd4b39;
-    width: 110px;
-    height: 30px;
-    margin-left: 90px;
+    margin-left: 93px;
     display: inline;
 } 
 
