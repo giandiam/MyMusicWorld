@@ -1,30 +1,91 @@
 body{
-    background-color: #787a78;
+    background-color: #fdf4f5;
 }
 
 .container{
-    background-color: white;
+    background-color: rgb(221, 220, 220);
     width: 400px;
     height: 500px;
-    border: 1px solid grey;
     border-radius: 2%;
     padding: 10px 50px;
-    margin: 50px auto;
+    margin: 70px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 img{
     width: 150px;
     height: 150px;
-    margin: 1px 0px 30px 70px;
+    margin-left: 85px;
 }
 
 button{
-    margin: 30px 0px 30px 110px;
     color: white !important;
     background-color: #88001b !important;
-    border: none;
+    font-family: 'Segoe print'; 
+    font-weight: bold;
+    margin-top: 30px;
 }
 
 button:hover{
-    background-color: #b35c6d !important;
+    background-color: #6e0016 !important;
+}
+
+h6{
+    padding: 15px;
+    margin-left: 120px;
+    color: #787a78;
+    font-family: 'Segoe print'; 
+    font-weight: bold;
+}
+
+.txt{
+    margin-top: 10px;
+    margin-left: 0px;
+    color: #787a78;
+    font-family: 'Segoe print'; 
+    font-weight: bold;
+}
+
+.btn-facebook{
+    color: white;
+    background-color: #3b5998;
+    width: 110px;
+    height: 30px;
+    display: inline;
+}
+
+.btn-facebook:hover{
+    background-color: #2b4783;
+    color: white;
+}
+
+.btn-google{
+    color: white;
+    background-color: #dd4b39;
+    width: 110px;
+    height: 30px;
+    margin-left: 90px;
+    display: inline;
+} 
+
+.btn-google:hover{
+    background-color: #bd402f;
+    color: white;
+} 
+
+
+.facebook{
+    font-family: sans-serif
+}
+
+.google{
+    font-family: sans-serif;
+}
+
+.signup{
+    font-family: sans-serif;
+}
+
+.signup:hover{
+    text-decoration: none;
 }
