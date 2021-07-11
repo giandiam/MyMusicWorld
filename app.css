@@ -1,0 +1,75 @@
+body{
+    background-color: #88001b;
+}
+
+.jumbotron{
+    background-color: #fdf4f5;
+    padding: 0px;
+    border-radius: 0%;
+    height: 95px;
+
+}
+
+#signout{
+    position: relative;
+    margin-top: -70px;
+    margin-left: 85%;
+}
+
+img{
+    width: 150px;
+    height: 150px;
+}
+
+.container{
+    position: absolute;
+}
+
+ul{
+    list-style: none;
+    padding: 60px 0px;
+    font-family: 'Segoe print'; 
+    text-align: center;
+    width: 150px;
+    border-radius: 25px;
+}
+
+li{
+    margin-bottom: 50px;
+    border-radius: 25px;
+    padding: 5px 5px;
+}
+
+li:hover{
+    background-color: #ddcdcd;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #88001b;
+    text-decoration: none;
+}
+
+#add{
+    background-color: #fdf4f5;
+    border-radius: 25px;
+}
+
+.btn{
+    color: #88001b;
+}
+
+.btn:hover{
+    color: #4b000f;
+}
+
+#plus{
+    border-style: dotted;
+    padding: 2px 14px;
+}
+
+
