@@ -1,9 +1,9 @@
 body{
-    background-color: #88001b;
+    background-color: #292929;
 }
 
 .jumbotron{
-    background-color: #fdf4f5;
+    background-color: #b8b8b8;
     padding: 0px;
     border-radius: 0%;
     height: 95px;
@@ -41,7 +41,7 @@ li{
 }
 
 li:hover{
-    background-color: #ddcdcd;
+    background-color: #88001b;
 }
 
 a{
@@ -50,7 +50,7 @@ a{
 }
 
 a:hover{
-    color: #88001b;
+    color: #b8b8b8;
     text-decoration: none;
 }
 
