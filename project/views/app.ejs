@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- FontAwesome and social-media bootstrap-->
-    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-    <title>MyMusicWorld</title>
+<%- include('header') -%>
     <link rel="stylesheet" href="/stylesheets/app.css">
+
+    <script>
+        var a =  1;
+        function add(){
+            const addbtn = document.createElement("BUTTON");
+            addbtn.innerHTML = '<i class="fa fa-music fa-2x id=album">Album' +a;'</i>';
+            addbtn.style = 'border: none; background-color: #fdf4f5; color: #88001b; margin: 2em;';
+            const col = document.getElementById("add");
+            const plus = document.getElementById("btn plus");
+            col.insertBefore(addbtn, plus);
+            a++;
+        }
+    </script>
+
 </head>
 <body>
     <div class="jumbotron text-center">
@@ -24,7 +24,7 @@
             </button>
         </form>
     </div>
-    <div class="container"> 
+    <div class="container">
         <div class="row">
             <div class="col-lg-2">
                 <ul>
@@ -34,11 +34,9 @@
                 </ul>
             </div>
             <div class="col-lg-10" id="add">
-                <form action="">
-                    <button class="btn">
-                        <i class="fa fa-plus-circle fa-2x" id="plus"></i>
-                    </button>
-                </form>
+                <button class="btn" id="btn plus" onclick="add()">
+                    <i class="fa fa-plus-circle fa-2x" id="plus" title="Create your album"></i>
+                </button>
             </div>
         </div>
     </div>
