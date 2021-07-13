@@ -1,31 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- FontAwesome and social-media bootstrap-->
-    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel = "stylesheet" href = "/css_buttons/bootstrap-social.css">
+<%- include('header') -%>
     <link rel="stylesheet" href="/stylesheets/index.css">
 </head>
 <body>
         <div class="container">
             <img class="img-fluid" src="imgs/MMWlogo.png">
-            <form action="">
+            <form action="/login" method='POST'>
                 <div class="form-group">
                     <label for="uname"><span style="font-family: Segoe print; font-weight: bold; color: #787a78;">Username</span></label>
-                    <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+                    <input type="text" class="form-control" id="uname" placeholder="Enter username" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="pwd"><span style="font-family: Segoe print; font-weight: bold; color: #787a78;">Password</span></label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
                 </div>
                 <button type="submit" class="btn btn-block">Sign in</button>
             </form>
@@ -34,7 +20,7 @@
                 <a class="btn btn-group btn-social btn-facebook"><span class="fa fa-facebook"> <span class="facebook">Facebook</span></span></a>
                 <a class="btn btn-group btn-social btn-google"><span class="fa fa-google "> <span class="google">Google</span></span></a>
             </div>
-            <h6 class="txt">New to MyMusicWorld?</h> <a href="" class="signup">Sign up</a>
+            <h6 class="txt">New to MyMusicWorld?</h> <a href="/signup" id="sign">Sign up</a>
          </div>
 </body>
 </html>
