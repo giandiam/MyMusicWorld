@@ -1,8 +1,8 @@
-const express = require('express'); /* assign 'express' module into express */
-
+const express = require('express'); /** assign 'express'
+module into express */
 const app = express(); /** assign into app the express() function that exported
-* by express module above */
-
+by express module above */
+const session = require('express-session');
 const bodyparser = require('body-parser');
 
 const router = require('./routers/router1');
@@ -10,6 +10,12 @@ const router = require('./routers/router1');
 app.use(bodyparser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs'); /**  */
+
+app.use(session({
+  secret: 'keyboard cat', //  '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
+  resave: false,
+  saveUninitialized: true,
+}));
 
 /* route for serving frontend files */
 
