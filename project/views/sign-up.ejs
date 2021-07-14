@@ -1,23 +1,27 @@
-<!DOCTYPE html>
 <%- include('header') -%>
     <link rel="stylesheet" href="/stylesheets/index.css">
 </head>
 <body>
         <div class="container" style="height: 600px; margin: 20px auto;">
             <img class="img-fluid" src="imgs/MMWlogo.png">
-            <form action="">
+            <form action="/signup" method="POST">
                 <div class="form-group">
                     <label for="uname"><span style="font-family: Segoe print; font-weight: bold; color: #787a78;">Choose a username</span></label>
-                    <input type="text" class="form-control" id="uname" name="uname" required>
+                    <input type="text" class="form-control" id="uname" name="uname">
                 </div>
                 <div class="form-group">
                     <label for="email"><span style="font-family: Segoe print; font-weight: bold; color: #787a78;">Email</span></label>
-                    <input type="text" class="form-control" id="email" name="email" required>
+                    <input type= "email" class="form-control" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="pwd"><span style="font-family: Segoe print; font-weight: bold; color: #787a78;">Create a new password</span></label>
                     <input type="password" class="form-control" id="pwd" name="pwd" required>
                 </div>
+                <% if(locals.exist){ %>
+                    <div class="alter alert-danger text-center">
+                        <%= exist %>
+                    </div>
+                <% } %>
                 <button type="submit" class="btn btn-block">Sign up</button>
             </form>
             <h6>or</h6>
