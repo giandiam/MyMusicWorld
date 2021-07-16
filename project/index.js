@@ -4,24 +4,29 @@ const app = express(); /** assign into app the express() function that exported
 by express module above */
 const session = require('express-session');
 const bodyparser = require('body-parser');
-
-const router = require('./routers/router1');
+const router1 = require('./routers/router1');
+const router2 = require('./routers/router2');
 
 app.use(bodyparser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs'); /**  */
 
 app.use(session({
-  secret: 'keyboard cat', //  '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
+  secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
 }));
 
 /* route for serving frontend files */
 
-app.use('/', router);
+app.use('/', router1);
+app.use('/', router2);
 
 app.get('/', (req, res) => {
+  res.render('index');
+});
+
+app.get('/login', (req, res) => {
   res.render('index');
 });
 
