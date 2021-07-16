@@ -25,7 +25,7 @@
             color: #6d6d6d;
             text-align: center;
         }
-        input{
+        button{
             color: white;
             background-color: #88001b;
             font-family: 'Segoe print'; 
@@ -37,7 +37,7 @@
             border: none;
             padding: 10px 20px;
         }
-        input:hover{
+        button:hover{
             background-color: #6e0016;
         }
     </style>
@@ -46,9 +46,12 @@
     <div class="container">
         <h1>OOoooopsss.</h1>
         <p>Maybe you have been lost. For more music...Go back!</p>
-        <form action="/">
-            <input type="submit" value="Back"></input>
-        </form>
+        <button type="submit" class="btn btn-block" onclick="goBack()">Back</button>
     </div>
 </body>
+<script>
+    function goBack() {
+      window.history.back();
+    }
+</script>
 </html>
