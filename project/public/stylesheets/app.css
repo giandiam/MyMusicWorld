@@ -25,8 +25,7 @@ img{
     position: absolute;
 }
 
-ul{
-    list-style: none;
+.col-lg-2{
     padding: 60px 0px;
     font-family: 'Segoe print'; 
     text-align: center;
@@ -34,8 +33,29 @@ ul{
     border-radius: 25px;
 }
 
+table{
+    margin-top: 5em;
+}
+
+ul{
+    list-style: none;
+}
+
+select{
+    margin-top: 8em;
+    padding: 5px 5px;
+    background-color: #292929;
+    color: white;
+    border: none;
+    max-width: 80%;
+}
+
+select:focus{
+    box-shadow: none;
+}
+
 li{
-    margin-bottom: 50px;
+    margin-top: 3em;
     border-radius: 25px;
     padding: 5px 5px;
 }
@@ -54,11 +74,6 @@ a:hover{
     text-decoration: none;
 }
 
-#add{
-    background-color: #fdf4f5;
-    border-radius: 25px;
-}
-
 .btn{
     color: #88001b;
 }
@@ -67,9 +82,16 @@ a:hover{
     color: #4b000f;
 }
 
+.btn:focus{
+    box-shadow: none;
+}
+
 #plus{
     border-style: dotted;
     padding: 2px 14px;
+    margin-top: 1.5em;
 }
 
-
+footer{
+    position: relative;
+}
