@@ -1,0 +1,50 @@
+<div class="text-center p-4" style="color: white; font-family: Segoe print;">
+    YourMusicWorld needs your imagination. Soo... Create YourSongs!
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
+            <ul>
+                <li><a href="/app">MyAlbums</a></li>
+                <li><a href="/app/myartists">MyArtists</a></li>
+                <li style="background-color: #88001b;"><a style="color: #b8b8b8;" href="/app/mysongs">MySongs</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-2">
+            <form action="/app/mysongs" method="POST">
+                <select class="selectpicker" data-style="btn-info" name="selectpicker" onchange='if(this.value != 0) { this.form.submit(); }'>      
+                    <option>Choose song</option>        
+                    <%if (locals.items1) {%>
+                        <%for (var i=0; i<=items1.length-1; i++) {%>
+                            <option><%= items1[i].title %></option>
+                    <%} }%> 
+                </select>
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <table class="table table-hover table-dark table-striped table-responsive">
+                <%if (locals.items2) {%>
+                    <caption style="caption-side: bottom; margin-letf: 3em; font-family: Segoe print;"><%= items2[0].title %></caption>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Lyrics</th>
+                        </tr>
+                    </thead>
+                    <%for (var i=0; i<=items2.length-1; i++) {%>
+                        <tbody>
+                            <tr>
+                                <td contenteditable="true"><%= items2[i].title %></td>
+                                <td contenteditable="true"><%= items2[i].lyrics %></td>
+                            </tr>
+                        </tbody>
+                <%} }%>
+            </table>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn" id="btn plus" onclick="add()">
+                <i class="fa fa-plus-circle fa-4x" id="plus" title="Create your song"></i>
+            </button>
+        </div>
+    </div>
+</div>

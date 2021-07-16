@@ -1,0 +1,50 @@
+<div class="text-center p-4" style="color: white; font-family: Segoe print;">
+    A world without artists equals an empty world. Start filling up YourWorld...
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
+            <ul>
+                <li><a href="/app">MyAlbums</a></li>
+                <li style="background-color: #88001b;"><a style="color: #b8b8b8;" href="/app/myartists">MyArtists</a></li>
+                <li><a href="/app/mysongs">MySongs</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-2">
+            <form action="/app/myartists" method="POST">
+                <select class="selectpicker" data-style="btn-info" name="selectpicker" onchange='if(this.value != 0) { this.form.submit(); }'>      
+                    <option>Choose artist</option>        
+                    <%if (locals.items1) {%>
+                        <%for (var i=0; i<=items1.length-1; i++) {%>
+                            <option><%= items1[i].artist %></option>
+                    <%} }%> 
+                </select>
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <table class="table table-hover table-dark table-striped table-responsive">
+                <%if (locals.items2) {%>
+                    <caption style="caption-side: bottom; margin-letf: 3em; font-family: Segoe print;"><%= items2[0].artist %></caption>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Url</th>
+                        </tr>
+                    </thead>
+                    <%for (var i=0; i<=items2.length-1; i++) {%>
+                        <tbody>
+                            <tr>
+                                <td contenteditable="true"><%= items2[i].song %></td>
+                                <td contenteditable="true"><%= items2[i].url %></td>
+                            </tr>
+                        </tbody>
+                <%} }%>
+            </table>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn" id="btn plus" onclick="add()">
+                <i class="fa fa-plus-circle fa-4x" id="plus" title="Add an artist"></i>
+            </button>
+        </div>
+    </div>
+</div>
