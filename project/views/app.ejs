@@ -2,10 +2,11 @@
     <link rel="stylesheet" href="/stylesheets/app.css">
 
     <script>
-        var a =  1;
         function add(){
             const addbtn = document.createElement("BUTTON");
-            addbtn.innerHTML = '<i class="fa fa-music fa-2x id=album">Album' +a;'</i>';
+            addbtn.setAttribute('data-toggle','modal');
+            addbtn.setAttribute('data-target','#myModal'); 
+            addbtn.innerHTML = '<a href="/app/Album" class="fa fa-music fa-2x id=album" style:"border: none; background-color: #fdf4f5; color: #88001b; margin: 2em;">Album </a>';
             addbtn.style = 'border: none; background-color: #fdf4f5; color: #88001b; margin: 2em;';
             const col = document.getElementById("add");
             const plus = document.getElementById("btn plus");
@@ -17,28 +18,23 @@
 </head>
 <body>
     <div class="jumbotron text-center">
-        <img class="img-fluid" src="imgs/MMWlogo.png"> 
-        <form action="/">
+        <%if (locals.myartists || locals.mysongs) {%>
+            <img class="img-fluid" src="../imgs/MMWlogo.png"> 
+        <%} else{%>
+            <img class="img-fluid" src="imgs/MMWlogo.png"> 
+        <%}%>
+        <form action="/logout">
             <button class="btn" id="signout">
                 Sign out <i class="fa fa-sign-out fa-1x"></i>
             </button>
         </form>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2">
-                <ul>
-                    <li><a href="">MyAlbums</a></li>
-                    <li><a href="">MyArtists</a></li>
-                    <li><a href="">MySongs</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-10" id="add">
-                <button class="btn" id="btn plus" onclick="add()">
-                    <i class="fa fa-plus-circle fa-2x" id="plus" title="Create your album"></i>
-                </button>
-            </div>
-        </div>
-    </div>
+    <%if (locals.myalbums==true) {%>
+        <%- include('myalbums') -%>
+    <%} else if (locals.myartists==true){%>
+        <%- include('myartists') -%> 
+    <%} else {%> 
+        <%-include('mysongs') -%>
+    <%}%>
 </body>
 </html>
