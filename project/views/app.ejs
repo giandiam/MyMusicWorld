@@ -1,25 +1,14 @@
 <%- include('header') -%>
     <link rel="stylesheet" href="/stylesheets/app.css">
-
-    <script>
-        function add(){
-            const addbtn = document.createElement("BUTTON");
-            addbtn.setAttribute('data-toggle','modal');
-            addbtn.setAttribute('data-target','#myModal'); 
-            addbtn.innerHTML = '<a href="/app/Album" class="fa fa-music fa-2x id=album" style:"border: none; background-color: #fdf4f5; color: #88001b; margin: 2em;">Album </a>';
-            addbtn.style = 'border: none; background-color: #fdf4f5; color: #88001b; margin: 2em;';
-            const col = document.getElementById("add");
-            const plus = document.getElementById("btn plus");
-            col.insertBefore(addbtn, plus);
-            a++;
-        }
-    </script>
-
 </head>
 <body>
-    <div class="jumbotron text-center">
-        <%if (locals.myartists || locals.mysongs) {%>
-            <img class="img-fluid" src="../imgs/MMWlogo.png"> 
+    <div class="jumbotron text-center"> 
+        <% if (locals.albumupdates){%>
+            <img class="img-fluid" src="../../imgs/MMWlogo.png"> 
+        <%} else if (locals.artistupdates || locals.songsupdates){%>
+                <img class="img-fluid" src="../../../imgs/MMWlogo.png"> 
+        <%} else if (locals.myartists || locals.mysongs) {%>
+                <img class="img-fluid" src="../imgs/MMWlogo.png">
         <%} else{%>
             <img class="img-fluid" src="imgs/MMWlogo.png"> 
         <%}%>
@@ -29,11 +18,11 @@
             </button>
         </form>
     </div>
-    <%if (locals.myalbums==true) {%>
+    <%if (locals.myalbums) {%>
         <%- include('myalbums') -%>
-    <%} else if (locals.myartists==true){%>
+    <%} else if (locals.myartists){%>
         <%- include('myartists') -%> 
-    <%} else {%> 
+    <%} else if (locals.mysongs){%> 
         <%-include('mysongs') -%>
     <%}%>
 </body>
