@@ -12,8 +12,9 @@
         </div>
         <div class="col-lg-2">
             <form action="/app/mysongs" method="POST">
-                <select class="selectpicker" data-style="btn-info" name="selectpicker" onchange='if(this.value != 0) { this.form.submit(); }'>      
-                    <option>Choose song</option>        
+                <select class="selectpicker" data-style="btn-info" name="selectpicker" onchange='if(this.value != 0 && this.value != "New song") { this.form.submit(); } else{window.location.href = "/app/mysongs"}'>      
+                    <option>Choose song</option>
+                    <option>New song</option>         
                     <%if (locals.items1) {%>
                         <%for (var i=0; i<=items1.length-1; i++) {%>
                             <option><%= items1[i].title %></option>
@@ -22,29 +23,45 @@
             </form>
         </div>
         <div class="col-lg-6">
-            <table class="table table-hover table-dark table-striped table-responsive">
-                <%if (locals.items2) {%>
-                    <caption style="caption-side: bottom; margin-letf: 3em; font-family: Segoe print;"><%= items2[0].title %></caption>
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Lyrics</th>
-                        </tr>
-                    </thead>
-                    <%for (var i=0; i<=items2.length-1; i++) {%>
-                        <tbody>
-                            <tr>
-                                <td contenteditable="true"><%= items2[i].title %></td>
-                                <td contenteditable="true"><%= items2[i].lyrics %></td>
-                            </tr>
-                        </tbody>
-                <%} }%>
+            <table id="table" class="table table-hover table-dark table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Lyrics</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <form id="form1" action="/app/mysongs/update" method="POST">
+                    <%if (locals.items2) {%>
+                        <caption style="caption-side: bottom; margin-letf: 3em; font-family: Segoe print;"><%= items2[0].title %></caption>
+                        <%for (var i=0; i<=items2.length-1; i++) {%>
+                            <tbody>
+                                <tr onchange="update(this)">
+                                    <td><input type="text" name="title" value="<%= items2[i].title %>" readonly title="Cannot change title"></td>
+                                    <td><input type="text" name="lyrics" value="<%= items2[i].lyrics %>"></td>
+                                    <td>
+                                        <a class="red-text" style="margin-left: 1em;"><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                    <%} }%>
+                </form>
             </table>
         </div>
         <div class="col-lg-2">
-            <button class="btn" id="btn plus" onclick="add()">
-                <i class="fa fa-plus-circle fa-4x" id="plus" title="Create your song"></i>
+            <button class="btn" id="btn plus" onclick="addrow()">
+                <i class="fa fa-plus-circle fa-4x" id="plus" title="Create a song"></i>
             </button>
         </div>
     </div>
 </div>
+<script>
+    function addrow(){
+        var table = document.getElementById("table");
+        var row = table.insertRow().outerHTML="<tr><td><input type='text' name='title'></td><td><input type='text' name='lyrics'></td><td><a class='teal-text' style='margin-left: 1em;''><i class='fa fa-check'></i></a><a class='red-text'><i class='fa fa-times'></i></a></td></tr>";
+    }
+    function update(x){
+        document.getElementById('form1').action = "/app/mysongs/update/" + x.rowIndex;
+        document.getElementById('form1').submit();
+    }
+</script>
