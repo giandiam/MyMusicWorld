@@ -3,17 +3,22 @@ body{
 }
 
 .jumbotron{
-    background-color: #b8b8b8;
+    background-color: #424242;
     padding: 0px;
     border-radius: 0%;
     height: 95px;
-
+    border-bottom: #7f7f7f  2px solid;
 }
 
 #signout{
     position: relative;
     margin-top: -70px;
     margin-left: 85%;
+    color: #7f7f7f;
+}
+
+#signout:hover{
+    color: #88001b;
 }
 
 img{
@@ -37,6 +42,12 @@ table{
     margin-top: 5em;
 }
 
+input{
+    background-color: #292929;
+    color: white;
+    size: fit-content;
+}
+
 ul{
     list-style: none;
 }
@@ -48,10 +59,6 @@ select{
     color: white;
     border: none;
     max-width: 80%;
-}
-
-select:focus{
-    box-shadow: none;
 }
 
 li{
@@ -90,8 +97,4 @@ a:hover{
     border-style: dotted;
     padding: 2px 14px;
     margin-top: 1.5em;
-}
-
-footer{
-    position: relative;
 }
