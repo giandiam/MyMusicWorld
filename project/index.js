@@ -6,6 +6,7 @@ const session = require('express-session');
 const bodyparser = require('body-parser');
 const router1 = require('./routers/router1');
 const router2 = require('./routers/router2');
+const router3 = require('./routers/router3');
 
 app.use(bodyparser.urlencoded({ extended: true }));
 
@@ -21,6 +22,7 @@ app.use(session({
 
 app.use('/', router1);
 app.use('/', router2);
+app.use('/', router3);
 
 app.get('/', (req, res) => {
   res.render('index');
