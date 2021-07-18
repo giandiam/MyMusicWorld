@@ -1,5 +1,10 @@
 <div class="text-center p-4" style="color: white; font-family: Segoe print;">
     A world without artists equals an empty world. Start filling up YourWorld...
+    <% if(locals.invalid && locals.invalid != ''){ %>
+        <div class="alter alert-danger text-center">
+            <%= invalid %>
+        </div>
+    <% } %>
 </div>
 <div class="container">
     <div class="row">
@@ -57,12 +62,39 @@
     </div>
 </div>
 <script>
+    var rowCount = table.rows.length;
     function addrow(){
-        var table = document.getElementById("table");
-        var row = table.insertRow().outerHTML="<tr><td><input type='text' name='title'></td><td><input type='text' name='url'></td><td><input type='text' name='artist'></td><td><a class='teal-text' style='margin-left: 1em;''><i class='fa fa-check'></i></a><a class='red-text'><i class='fa fa-times'></i></a></td></tr>";
+        const table = document.getElementById("table");       
+        const rowCount2 = table.rows.length;
+        if (rowCount==1){
+            table.insertRow(rowCount).innerHTML="<tr><td  contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td><a onclick= insert() class='teal-text'><i class='fa fa-check'></i></a><a onclick='deleterow()' class='red-text' style='margin-left: 1.5em;'><i class='fa fa-times'></i></a></td></tr>";
+        }
+        else{
+            table.insertRow(rowCount).innerHTML="<tr><td  contenteditable='true'></td><td contenteditable='true'></td><td></td><td><a onclick= insert() class='teal-text'><i class='fa fa-check'></i></a><a onclick='deleterow()' class='red-text' style='margin-left: 1.5em;'><i class='fa fa-times'></i></a></td></tr>";
+        }
+        if (rowCount2 > rowCount){
+            table.deleteRow(rowCount2);
+        }
+    }
+    function deleterow(){
+        const table = document.getElementById("table");
+        const rowCount = table.rows.length;
+        table.deleteRow(rowCount-1);
     }
     function update(x){
         document.getElementById('form1').action = "/app/myartists/update/" + x.rowIndex;
+        document.getElementById('form1').submit();
+    }
+    function insert(){
+        const table = document.getElementById("table");
+        const cell = [];
+        for (i=0;i<=2;i++){cell[i] = table.rows[rowCount].cells[i].innerHTML;}
+        document.getElementById('form1').method = 'POST';
+        if (rowCount>1){
+            document.getElementById('form1').action = "/app/myartists/insert?title="+cell[0] +"&url="+cell[1] +"&artist="+table.caption.innerHTML;
+        } else{
+            document.getElementById('form1').action = "/app/myartists/insert?title="+cell[0] +"&url="+cell[1] +"&artist="+cell[2];
+        }
         document.getElementById('form1').submit();
     }
 </script>
