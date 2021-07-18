@@ -1,5 +1,10 @@
 <div class="text-center p-4" style="color: white; font-family: Segoe print;">
     YourMusicWorld needs your imagination. Soo... Create YourSongs!
+    <% if(locals.invalid && locals.invalid != ''){ %>
+        <div class="alter alert-danger text-center">
+            <%= invalid %>
+        </div>
+    <% } %>
 </div>
 <div class="container">
     <div class="row">
@@ -56,12 +61,28 @@
     </div>
 </div>
 <script>
+    
     function addrow(){
-        var table = document.getElementById("table");
-        var row = table.insertRow().outerHTML="<tr><td><input type='text' name='title'></td><td><input type='text' name='lyrics'></td><td><a class='teal-text' style='margin-left: 1em;''><i class='fa fa-check'></i></a><a class='red-text'><i class='fa fa-times'></i></a></td></tr>";
+        const table = document.getElementById("table");  
+        const rowCount = table.rows.length;   
+        if (rowCount==1){
+            table.insertRow(rowCount).innerHTML="<tr><td  contenteditable='true'></td><td contenteditable='true'></td><td><a onclick= insert() class='teal-text'><i class='fa fa-check'></i></a><a onclick='deleterow()' class='red-text' style='margin-left: 1.5em;'><i class='fa fa-times'></i></a></td></tr>";
+        }
+    }
+    function deleterow(){
+        const table = document.getElementById("table");
+        table.deleteRow(1);
     }
     function update(x){
         document.getElementById('form1').action = "/app/mysongs/update/" + x.rowIndex;
+        document.getElementById('form1').submit();
+    }
+    function insert(){
+        const table = document.getElementById("table");
+        const cell = [];
+        for (i=0;i<=1;i++){cell[i] = table.rows[1].cells[i].innerHTML;}
+        document.getElementById('form1').method = 'POST';
+        document.getElementById('form1').action = "/app/mysongs/insert?title="+cell[0] +"&lyrics="+cell[1];
         document.getElementById('form1').submit();
     }
 </script>
