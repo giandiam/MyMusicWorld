@@ -12,7 +12,7 @@ router.post('/app/update/:row', async (req, res) => {
   let singer = req.body.singer[req.params.row - 1];
   let url = req.body.url[req.params.row - 1];
 
-  if (req.body.title[req.params.row - 1].length === 1) {
+  if (title.length === 1 && name.length === 1) {
     title = req.body.title;
     name = req.body.name;
     singer = req.body.singer;
@@ -56,7 +56,7 @@ router.post('/app/myartists/update/:row', async (req, res) => {
   let title = req.body.title[req.params.row - 1];
   let artist = req.body.artist[req.params.row - 1];
   let url = req.body.url[req.params.row - 1];
-  if (req.body.title[req.params.row - 1].length === 1) {
+  if (title.length === 1 && artist.length === 1) {
     title = req.body.title;
     artist = req.body.artist;
     url = req.body.url;
@@ -95,25 +95,19 @@ router.post('/app/myartists/update/:row', async (req, res) => {
 /* Update MySongs */
 
 router.post('/app/mysongs/update/:row', async (req, res) => {
-  let title = req.body.title[req.params.row - 1];
-  let lyrics = req.body.lyrics[req.params.row - 1];
-  if (req.body.title[req.params.row - 1].length === 1) {
-    title = req.body.title;
-    lyrics = req.body.lyrics;
-  }
   const query1 = {
     text: 'UPDATE "mysongs" SET lyrics=$1 WHERE "title" = $2',
-    values: [lyrics, title],
+    values: [req.body.lyrics, req.body.title],
   };
   try {
     await db.query(query1);
     const query2 = {
-      text: 'SELECT DISTINCT title FROM "mysongs" WHERE "user" = $1',
+      text: 'SELECT title FROM "mysongs" WHERE "user" = $1',
       values: req.session.user,
     };
     const query3 = {
       text: 'SELECT * FROM "mysongs" WHERE "user" = $1 and title = $2',
-      values: [req.session.user, title],
+      values: [req.session.user, req.body.title],
     };
     const rows1 = await db.query(query2);
     const rows2 = await db.query(query3);
