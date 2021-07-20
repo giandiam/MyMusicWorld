@@ -2,44 +2,52 @@ const express = require('express');
 
 const router = express.Router();
 
+const bcrypt = require('bcrypt');
+
 const db = require('../db/db');
 
-router.post('/login', (req, resp) => {
+/* Sign in */
+
+router.post('/login', async (req, res) => {
   const query = {
-    text: 'SELECT * FROM "Users" WHERE "email" = $1',
+    text: 'SELECT * FROM "users" WHERE "email" = $1',
     values: req.body.email,
   };
-
-  db
-    .query(query)
-    .then((res) => {
-      if (req.body.email === res[0].email && req.body.password === res[0].password) {
-        req.session.user = req.body.email;
-        resp.render('app');
-      } else { resp.render('index', { invalid: 'Invalid email or password' }); }
-    })
-    .catch((e) => console.error(e.stack));
+  const result = await db.query(query);
+  const validPass = await bcrypt.compare(req.body.password, result[0].password);
+  if (req.body.email === result[0].email && validPass) {
+    req.session.user = req.body.email;
+    res.redirect('/app');
+  } else {
+    res.render('index', { invalid: 'Invalid email or password' });
+  }
 });
 
-router.post('/signup', async (req, resp) => {
+/* Sign up */
+
+router.post('/signup', async (req, res) => {
   const query1 = {
-    text: 'SELECT * FROM "Users" WHERE "email" = $1',
+    text: 'SELECT * FROM "users" WHERE "email" = $1',
     values: req.body.email,
   };
 
   const rows = await db.query(query1);
 
   if (rows[0]) {
-    resp.render('sign-up', { exist: 'User already exists' });
+    res.render('sign-up', { exist: 'User already exists' });
   } else {
+    const hash = await bcrypt.hash(req.body.pwd, 10);
     const query2 = {
-      text: 'INSERT INTO "Users" VALUES($1, $2, $3)',
-      values: [req.body.email, req.body.uname, req.body.pwd],
+      text: 'INSERT INTO "users" VALUES($1, $2, $3)',
+      values: [req.body.email, req.body.uname, hash],
     };
     await db.query(query2);
-    resp.redirect('/app');
+    req.session.user = req.body.email;
+    res.redirect('/app');
   }
 });
+
+/* Sign out */
 
 router.get('/logout', (req, res) => {
   req.session.destroy((err) => {
