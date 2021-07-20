@@ -4,11 +4,19 @@ const router = express.Router();
 
 const db = require('../db/db');
 
+router.use((req, res, next) => {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-age=0, post-check=0, pre-check=0');
+  next();
+});
+
 /* MyAlbums */
 
 router.get('/app', async (req, res) => {
+  if (!req.session.user) {
+    res.redirect('/');
+  }
   const query1 = {
-    text: 'SELECT * FROM "albums" WHERE "user" = $1',
+    text: 'SELECT DISTINCT name FROM "albums" WHERE "user" = $1',
     values: req.session.user,
   };
   try {
@@ -21,7 +29,7 @@ router.get('/app', async (req, res) => {
 
 router.post('/app', async (req, res) => {
   const query1 = {
-    text: 'SELECT * FROM "albums" WHERE "user" = $1',
+    text: 'SELECT DISTINCT name FROM "albums" WHERE "user" = $1',
     values: req.session.user,
   };
   const query2 = {
@@ -41,7 +49,7 @@ router.post('/app', async (req, res) => {
 
 router.get('/app/myartists', async (req, res) => {
   const query1 = {
-    text: 'SELECT * FROM "artists" WHERE "user" = $1',
+    text: 'SELECT DISTINCT artist FROM "artists" WHERE "user" = $1',
     values: req.session.user,
   };
   try {
@@ -54,7 +62,7 @@ router.get('/app/myartists', async (req, res) => {
 
 router.post('/app/myartists', async (req, res) => {
   const query1 = {
-    text: 'SELECT * FROM "artists" WHERE "user" = $1',
+    text: 'SELECT DISTINCT artist FROM "artists" WHERE "user" = $1',
     values: req.session.user,
   };
   const query2 = {
@@ -74,7 +82,7 @@ router.post('/app/myartists', async (req, res) => {
 
 router.get('/app/mysongs', async (req, res) => {
   const query1 = {
-    text: 'SELECT * FROM "mysongs" WHERE "user" = $1',
+    text: 'SELECT DISTINCT title FROM "mysongs" WHERE "user" = $1',
     values: req.session.user,
   };
   try {
@@ -87,7 +95,7 @@ router.get('/app/mysongs', async (req, res) => {
 
 router.post('/app/mysongs', async (req, res) => {
   const query1 = {
-    text: 'SELECT * FROM "mysongs" WHERE "user" = $1',
+    text: 'SELECT DISTINCT title FROM "mysongs" WHERE "user" = $1',
     values: req.session.user,
   };
   const query2 = {
