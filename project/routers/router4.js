@@ -12,6 +12,7 @@ router.post('/app/insert', async (req, res) => {
     values: req.query.title,
   };
   let error = '';
+  let successs = '';
   try {
     const title = await db.query(query);
     if (title.length === 0 || req.query.title === '') {
@@ -22,6 +23,7 @@ router.post('/app/insert', async (req, res) => {
             req.session.user, req.query.url, req.query.album],
         };
         await db.query(query1);
+        successs = 'Successfully inserted';
       } else { error = 'Title and Album fields cannot be empty'; }
     } else { error = 'Title already exists'; }
   } catch (err) { console.log(err.stack); }
@@ -37,6 +39,7 @@ router.post('/app/insert', async (req, res) => {
     mysongs: false,
     albumupdates: true,
     invalid: error,
+    success: successs,
   });
 });
 
@@ -48,6 +51,7 @@ router.post('/app/myartists/insert', async (req, res) => {
     values: req.query.title,
   };
   let error = '';
+  let successs = '';
   try {
     const title = await db.query(query);
     if (title.length === 0 || req.query.title === '') {
@@ -58,6 +62,7 @@ router.post('/app/myartists/insert', async (req, res) => {
             req.query.url, req.session.user],
         };
         await db.query(query1);
+        successs = 'Successfully inserted';
       } else { error = 'Title and Artist fields cannot be empty'; }
     } else { error = 'Title already exists'; }
   } catch (err) { console.log(err.stack); }
@@ -73,6 +78,7 @@ router.post('/app/myartists/insert', async (req, res) => {
     mysongs: false,
     artistupdates: true,
     invalid: error,
+    success: successs,
   });
 });
 
@@ -84,6 +90,7 @@ router.post('/app/mysongs/insert', async (req, res) => {
     values: req.query.title,
   };
   let error = '';
+  let successs = '';
   try {
     const title = await db.query(query);
     if (title.length === 0 || req.query.title === '') {
@@ -93,6 +100,7 @@ router.post('/app/mysongs/insert', async (req, res) => {
           values: [req.query.title, req.query.lyrics, req.session.user],
         };
         await db.query(query1);
+        successs = 'Successfully inserted';
       } else { error = 'Title field cannot be empty'; }
     } else { error = 'Title already exists'; }
   } catch (err) { console.log(err.stack); }
@@ -108,6 +116,7 @@ router.post('/app/mysongs/insert', async (req, res) => {
     mysongs: true,
     songsupdates: true,
     invalid: error,
+    success: successs,
   });
 });
 
